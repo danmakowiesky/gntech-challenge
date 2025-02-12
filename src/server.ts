@@ -1,5 +1,6 @@
 import express, { Application } from 'express';
 import dotenv from 'dotenv';
+import { router } from './routes/routes';
 
 dotenv.config();
 
@@ -19,9 +20,7 @@ class Server {
   }
 
   private routes(): void {
-    this.app.get('/', (req, res) => {
-      res.send('API is running...');
-    });
+    this.app.use('/', router);
   }
 
   public start(): void {
