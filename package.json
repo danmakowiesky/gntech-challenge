@@ -1,0 +1,33 @@
+{
+  "name": "gntech-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danmakowiesky/gntech-challenge.git"
+  },
+  "author": "Daniel Makowiesky <danielmakowiesky@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danmakowiesky/gntech-challenge/issues"
+  },
+  "homepage": "https://github.com/danmakowiesky/gntech-challenge#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "tsup": "^8.3.6"
+  }
+}
