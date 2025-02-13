@@ -22,13 +22,10 @@ export class FetchAndStoreMoviesService {
           "x-rapidapi-host": process.env.RAPID_API_HOST!
         },
       };
-
       const { data } = await axios.request(options);
-
       if (!data.length) {
         throw new Error("Invalid data structure received from IMDb API");
       }
-
       const movies = data.flatMap((release: any) =>
         release.titles.map((movie: any) => ({
           url: movie.url,
@@ -39,13 +36,10 @@ export class FetchAndStoreMoviesService {
           genre: movie.genres || [],
         }))
       );
-
       const { success, message, insertedMovies } = await this.movieRepository.insert(movies);
-
       if (!success) {
         throw new Error(message);
       }
-
       return { success, message, insertedMovies };
     } catch (error: unknown) {
       let errorMessage = "Unknown error occurred";

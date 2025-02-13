@@ -43,10 +43,8 @@ export class MovieRepository {
   private async processMovies(movies: MovieDto[]): Promise<{ insertedMovies: any[], duplicateUrls: string[] }> {
     const insertedMovies = [];
     const duplicateUrls = [];
-
     for (const movie of movies) {
       const movieExists = await this.urlExists(movie.url);
-      
       if (movieExists) {
         duplicateUrls.push(movie.url);
       } else {
@@ -54,15 +52,12 @@ export class MovieRepository {
         insertedMovies.push(insertedMovie);
       }
     }
-
     return { insertedMovies, duplicateUrls };
   }
 
   async insert(movies: MovieDto[]): Promise<any> {
     const { insertedMovies, duplicateUrls } = await this.processMovies(movies);
-
     const message = this.formatDuplicateUrlsMessage(duplicateUrls);
-
     return {
       success: true,
       message,
