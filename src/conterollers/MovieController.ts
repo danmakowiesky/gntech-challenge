@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
-import { MovieService } from '../services/getAllMoviesService';
+import { FetchAndStoreMoviesService } from '../services/FetchAndStoreMoviesService';
 
 export class MovieController {
-  private movieService: MovieService;
+  private fetchAndStoreMoviesService: FetchAndStoreMoviesService;
 
   constructor() {
-    this.movieService = new MovieService();
+    this.fetchAndStoreMoviesService = new FetchAndStoreMoviesService();
   }
 
   async fetchAndStoreMovies(req: Request, res: Response): Promise<Response> {
@@ -30,7 +30,7 @@ export class MovieController {
     const { countryCode, type } = validationResult.data;
 
     try {
-      const movies = await this.movieService.execute(countryCode, type);
+      const movies = await this.fetchAndStoreMoviesService.execute(countryCode, type);
       if (movies.insertedMovies.length === 0) {
         return res.status(200).json({ movies });
       }
