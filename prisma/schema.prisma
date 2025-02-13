@@ -13,7 +13,7 @@ model Movie {
   originalTitle String
   type          String
   description   String
-  startYear     Int
+  startYear     Int?
   genre         Json
 
   createdAt DateTime @default(now())
