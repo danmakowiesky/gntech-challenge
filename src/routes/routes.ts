@@ -11,4 +11,11 @@ router.get('/get-movies-from-imdb', (req, res) => {
   });
 });
 
+router.get('/get-all-movies', (req, res) => {
+  movieController.getAllMovies(req, res).catch((error) => {
+    console.error('Unhandled error:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  })
+})
+
 export { router };
