@@ -1,0 +1,63 @@
+{
+	"info": {
+		"_postman_id": "832f3a76-01ee-4ab9-846d-74342bd5a0d6",
+		"name": "Challenge GNTECH",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35978849"
+	},
+	"item": [
+		{
+			"name": "Get Movies IMDB",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/get-movies-from-imdb?countryCode=BR&type=MOVIE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"get-movies-from-imdb"
+					],
+					"query": [
+						{
+							"key": "countryCode",
+							"value": "BR"
+						},
+						{
+							"key": "type",
+							"value": "MOVIE"
+						}
+					]
+				},
+				"description": "  \nEsta requisição faz uma chamada para a API do IMDb para buscar dados sobre filmes e os armazena no banco de dados. Ela aceita parâmetros para filtrar a busca com base no código do país e tipo de conteúdo (filme ou série de TV). Após obter os dados, os filmes são inseridos na base de dados, e uma resposta é retornada com o status da operação, incluindo informações sobre os filmes inseridos ou possíveis erros.\n\n**Parâmetros de Entrada**:\n\n- `countryCode` (string, obrigatória): Código de dois caracteres do país para filtrar os filmes.\n    \n- `type` (enum: 'MOVIE' ou 'TV', obrigatória): Tipo de conteúdo a ser buscado, podendo ser \"MOVIE\" (filme) ou \"TV\" (série de TV).\n    \n\n**Resposta**:\n\n- **Sucesso (201 - Created)**: Caso os filmes sejam inseridos com sucesso.\n    \n- **Sucesso (200 - OK)**: Caso a busca seja realizada, mas não haja novos filmes para inserção.\n    \n- **Erro (400 - Bad Request)**: Caso os parâmetros enviados na requisição sejam inválidos.\n    \n- **Erro (500 - Internal Server Error)**: Caso ocorra algum erro ao buscar os filmes ou ao realizar o insert no banco de dados."
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Movies",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/get-all-movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"get-all-movies"
+					]
+				},
+				"description": "Esta requisição é responsável por buscar todos os filmes armazenados no banco de dados. Caso não haja filmes registrados, uma mensagem informará que não foram encontrados filmes. Caso contrário, os filmes armazenados serão retornados em formato JSON.\n\n**Resposta**:\n\n- **Sucesso (200 - OK)**: Retorna uma lista com todos os filmes cadastrados no banco de dados. Se não houver filmes, será retornada uma mensagem indicando que nenhum filme foi encontrado.\n    \n- **Erro (500 - Internal Server Error)**: Caso ocorra um erro ao tentar buscar os filmes no banco de dados."
+			},
+			"response": []
+		}
+	]
+}
