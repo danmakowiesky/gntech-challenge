@@ -2,16 +2,16 @@ import axios from "axios";
 import { MovieRepository } from "../repository/movieRepository";
 import { MovieDto } from "../DTO/MovieDTO";
 
-type MovieServiceResponse = {
+type FetchAndStoreMoviesServiceResponse = {
   message: string;
   insertedMovies: MovieDto[];
   success: boolean;
 };
 
-export class MovieService {
+export class FetchAndStoreMoviesService {
   private movieRepository = new MovieRepository();
 
-  async execute(countryCode: string, type: string): Promise<MovieServiceResponse> {
+  async execute(countryCode: string, type: string): Promise<FetchAndStoreMoviesServiceResponse> {
     try {
       const options = {
         method: "GET",
@@ -49,7 +49,6 @@ export class MovieService {
       return { success, message, insertedMovies };
     } catch (error: unknown) {
       let errorMessage = "Unknown error occurred";
-
       if (error instanceof Error) {
         errorMessage = error.message;
       } else if (typeof error === "string") {
@@ -57,7 +56,6 @@ export class MovieService {
       } else if (typeof error === "object" && error !== null) {
         errorMessage = JSON.stringify(error);
       }
-
       throw new Error(
         `Error fetching or processing data from IMDb API: ${errorMessage}`
       );
