@@ -64,4 +64,14 @@ export class MovieRepository {
       insertedMovies,
     };
   }
+
+  async getAllMovies() {
+    try {
+      const movies = await this.prisma.movie.findMany();
+      return movies;
+    } catch (error) {
+      console.error('Error fetching movies:', error);
+      throw new Error('Failed to fetch movies');
+    }
+  }
 }

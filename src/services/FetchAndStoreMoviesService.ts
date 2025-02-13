@@ -9,7 +9,11 @@ type FetchAndStoreMoviesServiceResponse = {
 };
 
 export class FetchAndStoreMoviesService {
-  private movieRepository = new MovieRepository();
+  private movieRepository: MovieRepository;
+
+  constructor() {
+    this.movieRepository = new MovieRepository();
+  }
 
   async execute(countryCode: string, type: string): Promise<FetchAndStoreMoviesServiceResponse> {
     try {

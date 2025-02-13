@@ -1,12 +1,15 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
 import { FetchAndStoreMoviesService } from '../services/FetchAndStoreMoviesService';
+import { GetAllMoviesService } from '../services/getAllMoviesService';
 
 export class MovieController {
   private fetchAndStoreMoviesService: FetchAndStoreMoviesService;
+  private getAllMoviesService: GetAllMoviesService;
 
   constructor() {
     this.fetchAndStoreMoviesService = new FetchAndStoreMoviesService();
+    this.getAllMoviesService = new GetAllMoviesService();
   }
 
   async fetchAndStoreMovies(req: Request, res: Response): Promise<Response> {
@@ -40,6 +43,21 @@ export class MovieController {
         return res.status(500).json({ message: error.message || 'Erro ao buscar filmes' });
       }
       return res.status(500).json({ message: 'Erro desconhecido.' });
+    }
+  }
+
+  async getAllMovies(req: Request, res: Response): Promise<Response> {
+    try {
+      const movies = await this.getAllMoviesService.execute();
+      if(movies.length === 0) {
+        return res.status(200).json({ message: "No movies found."});
+      }
+      return res.status(200).json({ movies });
+    } catch (error) {
+      if (error instanceof Error) {
+        return res.status(500).json({ message: error.message || 'Error fetching movies' });
+      }
+      return res.status(500).json({ message: 'Unknown error.' });
     }
   }
 }
