@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
 import { FetchAndStoreMoviesService } from '../services/FetchAndStoreMoviesService';
-import { GetAllMoviesService } from '../services/getAllMoviesService';
+import { GetAllMoviesService } from '../services/GetAllMoviesService';
 
 export class MovieController {
   private fetchAndStoreMoviesService: FetchAndStoreMoviesService;

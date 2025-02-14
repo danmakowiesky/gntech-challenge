@@ -8,7 +8,7 @@
     "dev:docker": "docker-compose up -d",
     "start:dev": "tsx watch src/server.ts",
     "start": "node build/server.js",
-    "build": "tsup src --out-dit",
+    "build": "tsup src --out-dir build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
