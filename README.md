@@ -155,13 +155,16 @@ Siga os passos abaixo para rodar o projeto localmente:
     RAPIDAPI_KEY=
     URL_API=
     RAPID_API_HOST=
+   ```
 
 5.Para rodar o projeto em modo de desenvolvimento, use o seguinte comando:
    ```bash
      npm run dev
    ```
 
-6.Acesse a API em `http://localhost:3000/movies` para ver os filmes cadastrados no banco de dados.
+6. Acesse a API em `http://localhost:3000/get-movies-from-imdb?countryCode=BR&type=MOVIE` para buscar filmes do IMDb via RapidAPI e salvar em banco de dados.
+
+7 .Acesse a API em `http://localhost:3000/get-all-movies` para ver os filmes cadastrados no banco de dados.
 
 
 
